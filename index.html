@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
+  <title>Palette Generator — Brand Color System Studio</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="light-theme">
+  <!-- Ambient Background Blobs (Clean Blue Tones, Zero Green) -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="app-shell">
+    <!-- Top Glass Header -->
+    <header class="glass-panel app-header">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div>
+          <h1>Palette Generator</h1>
+          <p class="subtitle">Brand Color System &amp; Spec Sheet Studio</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="brand-title-input-wrap">
+          <label for="brandTitleInput">Brand / Project Name</label>
+          <input type="text" id="brandTitleInput" value="Acme Brand Kit" placeholder="e.g. Acme Corp 2026" />
+        </div>
+        <button type="button" id="themeToggleBtn" class="btn btn-ghost" title="Toggle Light/Dark Mode" aria-label="Toggle theme">
+          <svg id="themeIconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="themeIconMoon" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <span id="themeLabel">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Grid -->
+    <main class="workspace">
+      <!-- Left Sidebar: Color Builder & Palette List -->
+      <section class="glass-panel control-column" aria-label="Palette Editor">
+        <div class="section-head">
+          <h2>1. Add Brand Color</h2>
+          <span class="badge">HEX &bull; RGB &bull; HSL &bull; CMYK</span>
+        </div>
+
+        <form id="addColorForm" class="color-form">
+          <div class="form-row color-input-row">
+            <div class="picker-wrapper" title="Pick color visually">
+              <input type="color" id="nativeColorPicker" value="#2563eb" aria-label="Visual color picker" />
+            </div>
+            <div class="input-group flex-1">
+              <label for="colorCodeInput">Color Code (Any Format)</label>
+              <input
+                type="text"
+                id="colorCodeInput"
+                value="#2563EB"
+                placeholder="#2563EB or rgb(37,99,235) or hsl(221,83%,53%)"
+                required
+              />
+              <small id="formatDetectedHint" class="input-hint">Detected: HEX &bull; Auto-named: Cobalt Blue</small>
+            </div>
+          </div>
+
+          <div class="form-row two-col">
+            <div class="input-group">
+              <label for="colorNameInput">Color Name</label>
+              <input type="text" id="colorNameInput" value="Cobalt Blue" placeholder="e.g. Cobalt Blue" required />
+            </div>
+            <div class="input-group">
+              <label for="colorLabelInput">Role / Label</label>
+              <input type="text" id="colorLabelInput" value="Primary Brand" placeholder="e.g. Primary, Accent, Surface" required />
+            </div>
+          </div>
+
+          <div class="quick-labels" aria-label="Quick role tags">
+            <button type="button" class="chip" data-label="Primary Brand">Primary</button>
+            <button type="button" class="chip" data-label="Secondary">Secondary</button>
+            <button type="button" class="chip" data-label="Accent">Accent</button>
+            <button type="button" class="chip" data-label="Surface / BG">Surface</button>
+            <button type="button" class="chip" data-label="Ink / Text">Ink</button>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-full">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add to Brand Palette
+          </button>
+        </form>
+
+        <div class="divider"></div>
+
+        <div class="section-head">
+          <h2>2. Brand Swatches (<span id="swatchCount">5</span>)</h2>
+          <div class="preset-actions">
+            <button type="button" id="loadPresetBtn" class="btn-link">Reset Sample</button>
+            <button type="button" id="clearAllBtn" class="btn-link danger">Clear</button>
+          </div>
+        </div>
+
+        <ul id="paletteList" class="palette-list" aria-label="Brand colors list">
+          <!-- Populated dynamically -->
+        </ul>
+      </section>
+
+      <!-- Right Main Stage: Design Selector, Live Preview & Export -->
+      <section class="glass-panel preview-column" aria-label="Design Preview and Export">
+        <div class="toolbar">
+          <div class="control-block">
+            <label for="designStyleSelect">Design Layout</label>
+            <div class="design-pills" id="designStyleGroup" role="radiogroup" aria-label="Choose visual layout">
+              <button type="button" class="design-pill active" data-design="horizontal-lines">Horizontal Lines</button>
+              <button type="button" class="design-pill" data-design="vertical-stripes">Vertical Pillars</button>
+              <button type="button" class="design-pill" data-design="swiss-grid">Swiss Cards</button>
+              <button type="button" class="design-pill" data-design="gradient-waves">Layered Waves</button>
+              <button type="button" class="design-pill" data-design="editorial-circles">Color Orbs</button>
+            </div>
+          </div>
+
+          <div class="toolbar-subrow">
+            <div class="control-block">
+              <label for="displayFormatSelect">Output Code Format</label>
+              <select id="displayFormatSelect" class="glass-select">
+                <option value="HEX" selected>HEX (#2563EB)</option>
+                <option value="RGB">RGB (37, 99, 235)</option>
+                <option value="HSL">HSL (221°, 83%, 53%)</option>
+                <option value="CMYK">CMYK (84%, 58%, 0%, 8%)</option>
+                <option value="ALL">Multi-Spec (HEX + RGB + CMYK)</option>
+              </select>
+            </div>
+
+            <div class="control-block">
+              <label for="exportFormatSelect">Image Format</label>
+              <select id="exportFormatSelect" class="glass-select">
+                <option value="png" selected>PNG (Lossless High-Res)</option>
+                <option value="jpeg">JPG (Compressed Web/Print)</option>
+                <option value="webp">WEBP (Modern Lightweight)</option>
+                <option value="svg">SVG (Scalable Vector)</option>
+              </select>
+            </div>
+
+            <div class="control-block">
+              <label for="aspectRatioSelect">Canvas Size</label>
+              <select id="aspectRatioSelect" class="glass-select">
+                <option value="1600x1000" selected>Landscape Spec (1600 &times; 1000)</option>
+                <option value="1200x1200">Square Social (1200 &times; 1200)</option>
+                <option value="1080x1600">Portrait Poster (1080 &times; 1600)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Rendered Canvas Preview -->
+        <div class="canvas-stage">
+          <div class="canvas-frame">
+            <canvas id="paletteCanvas" width="1600" height="1000"></canvas>
+          </div>
+        </div>
+
+        <!-- Export Footer Bar -->
+        <div class="export-bar">
+          <div class="export-info">
+            <span class="status-dot"></span>
+            <span id="exportMetaText">Ready to export &bull; 1600 &times; 1000 px &bull; PNG</span>
+          </div>
+          <div class="export-buttons">
+            <button type="button" id="copyCssBtn" class="btn btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy CSS Vars
+            </button>
+            <button type="button" id="downloadBtn" class="btn btn-primary">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Palette Image
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
