@@ -42,7 +42,7 @@ body.dark-theme {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--bg-base);
   color: var(--text-primary);
   min-height: 100vh;
@@ -164,8 +164,8 @@ body.dark-theme .blob {
 }
 
 .brand h1 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.35rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
@@ -190,7 +190,7 @@ body.dark-theme .blob {
 
 .brand-title-input-wrap label {
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
@@ -202,6 +202,7 @@ body.dark-theme .blob {
   border: 1px solid var(--input-border);
   background: var(--input-bg);
   color: var(--text-primary);
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   min-width: 220px;
@@ -236,8 +237,8 @@ body.dark-theme .blob {
 }
 
 .section-head h2 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.02rem;
   font-weight: 700;
 }
 
@@ -313,7 +314,7 @@ body.dark-theme .blob {
   border: 1px solid var(--input-border);
   background: var(--input-bg);
   color: var(--text-primary);
-  font-family: inherit;
+  font-family: 'Syne', sans-serif;
   font-size: 0.88rem;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -349,8 +350,9 @@ body.dark-theme .blob {
   border: 1px solid var(--input-border);
   background: var(--input-bg);
   color: var(--text-secondary);
+  font-family: 'Syne', sans-serif;
   font-size: 0.74rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -369,9 +371,9 @@ body.dark-theme .blob {
   gap: 8px;
   padding: 10px 16px;
   border-radius: var(--radius-md);
-  font-family: inherit;
+  font-family: 'Syne', sans-serif;
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   border: 1px solid transparent;
   transition: all 0.2s ease;
@@ -415,8 +417,9 @@ body.dark-theme .blob {
   background: none;
   border: none;
   color: var(--accent-primary);
+  font-family: 'Syne', sans-serif;
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -491,7 +494,7 @@ body.dark-theme .blob {
 
 .swatch-role {
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 2px 7px;
   border-radius: 6px;
   background: var(--accent-soft);
@@ -574,7 +577,7 @@ body.dark-theme .blob {
   border: 1px solid var(--input-border);
   background: var(--input-bg);
   color: var(--text-secondary);
-  font-family: inherit;
+  font-family: 'Syne', sans-serif;
   font-size: 0.83rem;
   font-weight: 600;
   cursor: pointer;
@@ -674,6 +677,7 @@ body.dark-theme .blob {
   border-radius: var(--radius-md);
   background: #1e3a8a;
   color: #ffffff;
+  font-family: 'Syne', sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);

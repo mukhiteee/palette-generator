@@ -8,4 +8,4 @@ A progressive web app (PWA) for creating, organizing, and exporting high-resolut
 - **5 Visual Spec Layouts:** Horizontal Lines, Vertical Pillars, Swiss Spec Cards, Layered Waves, and Chromatic Orbs.
 - **Selectable Output Code Format:** Render color codes on the exported image in `HEX`, `RGB`, `HSL`, `CMYK`, or `Multi-Spec`.
 - **Multiple Image Export Formats:** Download in `PNG`, `JPG`, `WEBP`, or scalable `SVG`, plus one-click CSS variables export.
-- **Glassmorphism UI & Light Mode Default:** Styled with frosted glass panels and a clean blue (`#2563EB`) primary color theme.
+- **Glassmorphism UI, Light Mode Default & Syne Typography:** Styled with frosted glass panels, a solid blue (`#2563EB`) primary theme, and Google Fonts **Syne**.

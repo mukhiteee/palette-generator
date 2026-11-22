@@ -317,14 +317,14 @@
     const pad = Math.round(W * 0.045);
     const headerH = Math.round(H * 0.13);
 
-    // Header Title & Metadata
+    // Header Title & Metadata (Syne Font)
     ctx.fillStyle = '#0F172A';
-    ctx.font = `800 ${Math.round(W * 0.026)}px "Plus Jakarta Sans", Inter, sans-serif`;
+    ctx.font = `800 ${Math.round(W * 0.026)}px "Syne", sans-serif`;
     ctx.textBaseline = 'middle';
     ctx.fillText(brandTitle, pad, pad + headerH * 0.28);
 
     ctx.fillStyle = '#64748B';
-    ctx.font = `500 ${Math.round(W * 0.0125)}px Inter, sans-serif`;
+    ctx.font = `600 ${Math.round(W * 0.012)}px "Syne", sans-serif`;
     const designLabelMap = {
       'horizontal-lines': 'HORIZONTAL BANDS',
       'vertical-stripes': 'VERTICAL PILLARS',
@@ -387,7 +387,7 @@
       const midY = by + bandH / 2;
 
       // Role Pill Badge on Left
-      ctx.font = `700 ${Math.max(12, Math.min(18, bandH * 0.19))}px Inter, sans-serif`;
+      ctx.font = `700 ${Math.max(12, Math.min(17, bandH * 0.18))}px "Syne", sans-serif`;
       const roleText = item.label.toUpperCase();
       const roleMetrics = ctx.measureText(roleText);
       const pillW = roleMetrics.width + 24;
@@ -404,12 +404,12 @@
 
       // Color Name
       const nameX = x + innerPad + pillW + 20;
-      ctx.font = `700 ${Math.max(15, Math.min(26, bandH * 0.28))}px "Plus Jakarta Sans", Inter, sans-serif`;
+      ctx.font = `700 ${Math.max(15, Math.min(25, bandH * 0.27))}px "Syne", sans-serif`;
       ctx.fillText(item.name, nameX, midY);
 
       // Formatted Color Code on Right
       const codeStr = formatColorCode(item.hex, displayFormat);
-      ctx.font = `600 ${Math.max(13, Math.min(21, bandH * 0.22))}px "JetBrains Mono", monospace`;
+      ctx.font = `600 ${Math.max(13, Math.min(20, bandH * 0.21))}px "JetBrains Mono", monospace`;
       ctx.textAlign = 'right';
       ctx.fillText(codeStr, x + w - innerPad, midY);
       ctx.textAlign = 'left';
@@ -447,10 +447,10 @@
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
 
-      ctx.font = `700 ${Math.max(11, Math.min(14, colW * 0.065))}px Inter, sans-serif`;
+      ctx.font = `700 ${Math.max(11, Math.min(13, colW * 0.06))}px "Syne", sans-serif`;
       ctx.fillText(item.label.toUpperCase(), cx + padIn, fy + 18);
 
-      ctx.font = `800 ${Math.max(15, Math.min(22, colW * 0.095))}px "Plus Jakarta Sans", Inter, sans-serif`;
+      ctx.font = `800 ${Math.max(15, Math.min(21, colW * 0.09))}px "Syne", sans-serif`;
       ctx.fillText(item.name, cx + padIn, fy + 44, colW - padIn * 2);
 
       ctx.font = `500 ${Math.max(11, Math.min(15, colW * 0.068))}px "JetBrains Mono", monospace`;
@@ -489,7 +489,7 @@
       ctx.restore();
 
       const fg = getContrastTextColor(item.hex);
-      ctx.font = '700 13px Inter, sans-serif';
+      ctx.font = '700 12px "Syne", sans-serif';
       const roleTxt = item.label.toUpperCase();
       const badgeW = ctx.measureText(roleTxt).width + 20;
       drawRoundedRect(ctx, cx + 16, cy + 16, badgeW, 28, 14);
@@ -501,7 +501,7 @@
 
       const metaY = cy + swatchH + 22;
       ctx.fillStyle = '#0F172A';
-      ctx.font = '800 21px "Plus Jakarta Sans", Inter, sans-serif';
+      ctx.font = '800 20px "Syne", sans-serif';
       ctx.textBaseline = 'top';
       ctx.fillText(item.name, cx + 18, metaY, cardW - 36);
 
@@ -560,11 +560,11 @@
       const tx = legendX + 16 + chipSize + 16;
       ctx.textBaseline = 'top';
       ctx.fillStyle = '#2563EB';
-      ctx.font = '700 12px Inter, sans-serif';
+      ctx.font = '700 12px "Syne", sans-serif';
       ctx.fillText(item.label.toUpperCase(), tx, ry + 14);
 
       ctx.fillStyle = '#0F172A';
-      ctx.font = '700 19px "Plus Jakarta Sans", Inter, sans-serif';
+      ctx.font = '700 18px "Syne", sans-serif';
       ctx.fillText(item.name, tx, ry + 32, legendW - chipSize - 48);
 
       ctx.fillStyle = '#475569';
@@ -601,7 +601,7 @@
 
       const fg = getContrastTextColor(item.hex);
       ctx.fillStyle = fg;
-      ctx.font = '700 13px Inter, sans-serif';
+      ctx.font = '700 12px "Syne", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(item.label.toUpperCase(), cx, cy);
@@ -630,12 +630,12 @@
       ctx.fill();
 
       ctx.fillStyle = '#0F172A';
-      ctx.font = '700 18px "Plus Jakarta Sans", Inter, sans-serif';
+      ctx.font = '700 17px "Syne", sans-serif';
       ctx.textBaseline = 'middle';
       ctx.fillText(item.name, x + 46, midY);
 
       ctx.fillStyle = '#2563EB';
-      ctx.font = '600 14px Inter, sans-serif';
+      ctx.font = '700 13px "Syne", sans-serif';
       ctx.fillText(item.label.toUpperCase(), x + w * 0.36, midY);
 
       ctx.fillStyle = '#334155';
@@ -668,7 +668,7 @@
       const codeStr = escapeHtml(formatColorCode(item.hex, displayFormat));
       shapesSvg += `
         <rect x="${pad}" y="${by}" width="${bodyW}" height="${bandH}" rx="18" fill="${item.hex}" stroke="rgba(15,23,42,0.12)" stroke-width="1.5"/>
-        <text x="${pad + 36}" y="${by + bandH / 2}" fill="${fg}" font-family="Inter, sans-serif" font-weight="700" font-size="16" dominant-baseline="middle">[${escapeHtml(item.label.toUpperCase())}]  ${escapeHtml(item.name)}</text>
+        <text x="${pad + 36}" y="${by + bandH / 2}" fill="${fg}" font-family="Syne, sans-serif" font-weight="700" font-size="16" dominant-baseline="middle">[${escapeHtml(item.label.toUpperCase())}]  ${escapeHtml(item.name)}</text>
         <text x="${pad + bodyW - 36}" y="${by + bandH / 2}" fill="${fg}" font-family="monospace" font-weight="600" font-size="16" text-anchor="end" dominant-baseline="middle">${codeStr}</text>
       `;
     });
@@ -676,8 +676,8 @@
     return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
   <rect width="${W}" height="${H}" fill="#FFFFFF"/>
-  <text x="${pad}" y="${pad + headerH * 0.35}" font-family="Plus Jakarta Sans, Inter, sans-serif" font-weight="800" font-size="${Math.round(W * 0.026)}" fill="#0F172A">${brandTitle}</text>
-  <text x="${pad}" y="${pad + headerH * 0.72}" font-family="Inter, sans-serif" font-weight="500" font-size="${Math.round(W * 0.0125)}" fill="#64748B">${items.length} BRAND COLORS • FORMAT: ${displayFormat}</text>
+  <text x="${pad}" y="${pad + headerH * 0.35}" font-family="Syne, sans-serif" font-weight="800" font-size="${Math.round(W * 0.026)}" fill="#0F172A">${brandTitle}</text>
+  <text x="${pad}" y="${pad + headerH * 0.72}" font-family="Syne, sans-serif" font-weight="600" font-size="${Math.round(W * 0.012)}" fill="#64748B">${items.length} BRAND COLORS • FORMAT: ${displayFormat}</text>
   <line x1="${pad}" y1="${pad + headerH}" x2="${W - pad}" y2="${pad + headerH}" stroke="#E2E8F0" stroke-width="2"/>
   ${shapesSvg}
 </svg>`;
@@ -820,8 +820,7 @@
       lines.push(`  --brand-${slug}-${idx + 1}: ${item.hex}; /* ${item.name} */`);
     });
     lines.push('}');
-    navigator.clipboard.writeText(lines.join('
-')).then(() => {
+    navigator.clipboard.writeText(lines.join('\n')).then(() => {
       showToast('Copied CSS custom properties to clipboard!');
     });
   });
@@ -866,4 +865,7 @@
 
   renderPaletteList();
   renderCanvas();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(renderCanvas);
+  }
 })();
