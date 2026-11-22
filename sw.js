@@ -1,4 +1,4 @@
-const CACHE_NAME = 'palette-generator-v2';
+const CACHE_NAME = 'palette-generator-v3';
 const ASSETS = [
   './',
   './index.html',

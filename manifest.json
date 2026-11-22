@@ -4,7 +4,7 @@
   "description": "Create, organize, and export high-resolution brand color palette cards with multiple layouts and formats.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f1f5f9",
+  "background_color": "#eef2f6",
   "theme_color": "#2563eb",
   "orientation": "any",
   "icons": [
